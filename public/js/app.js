@@ -1974,106 +1974,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2101,7 +2001,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
-    addCategory: function addCategory() {
+    add: function add() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -2163,7 +2063,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    editCategory: function editCategory() {
+    edit: function edit() {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
@@ -2226,7 +2126,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.index = index;
       this.isEditingItem = true;
     },
-    deleteCategory: function deleteCategory() {
+    "delete": function _delete() {
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
@@ -2692,11 +2592,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /*!******************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/mainapp.vue?vue&type=script&lang=js& ***!
   \******************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
 //
 //
 //
@@ -2737,37 +2635,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['user', 'permission'],
-  data: function data() {
-    return {
-      isLoggedIn: false
-    };
-  },
-  created: function created() {
-    this.$store.commit('setUpdateUser', this.user);
-    this.$store.commit('setUserPermission', this.permission);
-  }
-});
+// export default {
+//     props: ['user', 'permission'],
+//     data(){
+//        return {
+//           isLoggedIn : false,
+//        }
+//     },
+//     created(){
+//        this.$store.commit('setUpdateUser', this.user)
+//        this.$store.commit('setUserPermission', this.permission)
+//     }
+// }
 
 /***/ }),
 
@@ -20443,6 +20322,24 @@ var runtime = (function (exports) {
   var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
   var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
 
+  function define(obj, key, value) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+    return obj[key];
+  }
+  try {
+    // IE 8 has a broken Object.defineProperty that only works on DOM objects.
+    define({}, "");
+  } catch (err) {
+    define = function(obj, key, value) {
+      return obj[key] = value;
+    };
+  }
+
   function wrap(innerFn, outerFn, self, tryLocsList) {
     // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
     var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
@@ -20513,16 +20410,19 @@ var runtime = (function (exports) {
     Generator.prototype = Object.create(IteratorPrototype);
   GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
   GeneratorFunctionPrototype.constructor = GeneratorFunction;
-  GeneratorFunctionPrototype[toStringTagSymbol] =
-    GeneratorFunction.displayName = "GeneratorFunction";
+  GeneratorFunction.displayName = define(
+    GeneratorFunctionPrototype,
+    toStringTagSymbol,
+    "GeneratorFunction"
+  );
 
   // Helper for defining the .next, .throw, and .return methods of the
   // Iterator interface in terms of a single ._invoke method.
   function defineIteratorMethods(prototype) {
     ["next", "throw", "return"].forEach(function(method) {
-      prototype[method] = function(arg) {
+      define(prototype, method, function(arg) {
         return this._invoke(method, arg);
-      };
+      });
     });
   }
 
@@ -20541,9 +20441,7 @@ var runtime = (function (exports) {
       Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
     } else {
       genFun.__proto__ = GeneratorFunctionPrototype;
-      if (!(toStringTagSymbol in genFun)) {
-        genFun[toStringTagSymbol] = "GeneratorFunction";
-      }
+      define(genFun, toStringTagSymbol, "GeneratorFunction");
     }
     genFun.prototype = Object.create(Gp);
     return genFun;
@@ -20813,7 +20711,7 @@ var runtime = (function (exports) {
   // unified ._invoke helper method.
   defineIteratorMethods(Gp);
 
-  Gp[toStringTagSymbol] = "Generator";
+  define(Gp, toStringTagSymbol, "Generator");
 
   // A Generator should always return itself as the iterator object when the
   // @@iterator function is called on it. Some browsers' implementations of the
@@ -67596,410 +67494,103 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "content" }, [
-      _c(
-        "div",
-        { staticClass: "container-fluid" },
-        [
-          _c(
-            "div",
-            {
-              staticClass:
-                "_1adminOverveiw_table_recent _box_shadow _border_radious _mar_b30 _p20"
-            },
-            [
-              _c(
-                "p",
-                { staticClass: "_title0" },
-                [
-                  _vm._v("Category List "),
-                  _c(
-                    "Button",
-                    {
-                      on: {
-                        click: function($event) {
-                          _vm.addModal = true
-                        }
-                      }
-                    },
-                    [
-                      _c("Icon", { attrs: { type: "md-add" } }),
-                      _vm._v("Add Category")
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "_overflow _table_div" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "_1adminOverveiw_table_recent _box_shadow _border_radious _mar_b30 _p20"
+          },
+          [
+            _c(
+              "p",
+              { staticClass: "_title0" },
+              [
+                _vm._v("Category List "),
                 _c(
-                  "table",
-                  { staticClass: "_table" },
-                  [
-                    _vm._m(0),
-                    _vm._v(" "),
-                    _vm._l(_vm.categoryLists, function(category, i) {
-                      return _c("tr", { key: i }, [
-                        _c("td", [_vm._v(_vm._s(category.id))]),
-                        _vm._v(" "),
-                        _c("td", { staticClass: "table_pro_img" }, [
-                          _c("img", { attrs: { src: category.iconImage } })
-                        ]),
-                        _vm._v(" "),
-                        _c("td", { staticClass: "_table_name" }, [
-                          _vm._v(_vm._s(category.categoryName))
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(category.created_at))]),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          [
-                            _c(
-                              "Button",
-                              {
-                                attrs: { type: "info", size: "small" },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.showEditModal(category, i)
-                                  }
-                                }
-                              },
-                              [_vm._v("Edit")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "Button",
-                              {
-                                attrs: {
-                                  type: "error",
-                                  size: "small",
-                                  loading: category.isDeleting
-                                },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.showDeletingModal(category, i)
-                                  }
-                                }
-                              },
-                              [_vm._v("Delete")]
-                            )
-                          ],
-                          1
-                        )
-                      ])
-                    })
-                  ],
-                  2
-                )
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "Modal",
-            {
-              attrs: {
-                title: "Add Category",
-                "mask-closable": false,
-                closable: false
-              },
-              model: {
-                value: _vm.addModal,
-                callback: function($$v) {
-                  _vm.addModal = $$v
-                },
-                expression: "addModal"
-              }
-            },
-            [
-              _c("Input", {
-                attrs: { placeholder: "Add Category Name" },
-                model: {
-                  value: _vm.data.categoryName,
-                  callback: function($$v) {
-                    _vm.$set(_vm.data, "categoryName", $$v)
-                  },
-                  expression: "data.categoryName"
-                }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "space" }),
-              _vm._v(" "),
-              _c(
-                "Upload",
-                {
-                  ref: "uploads",
-                  attrs: {
-                    type: "drag",
-                    headers: {
-                      "x-csrf-token": _vm.token,
-                      "X-Requested-With": "XMLHttpRequest"
-                    },
-                    "on-success": _vm.handleSuccess,
-                    "on-error": _vm.handleError,
-                    format: ["jpg", "jpeg", "png", "bmp"],
-                    "max-size": 2048,
-                    "on-format-error": _vm.handleFormatError,
-                    "on-exceeded-size": _vm.handleMaxSize,
-                    action: "/app/upload"
-                  }
-                },
-                [
-                  _c(
-                    "div",
-                    { staticStyle: { padding: "20px 0" } },
-                    [
-                      _c("Icon", {
-                        staticStyle: { color: "#3399ff" },
-                        attrs: { type: "ios-cloud-upload", size: "52" }
-                      }),
-                      _vm._v(" "),
-                      _c("p", [_vm._v("Click or drag files here to upload")])
-                    ],
-                    1
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _vm.data.iconImage
-                ? _c("div", { staticClass: "demo-upload-list" }, [
-                    _c("img", {
-                      attrs: { src: "/uploads/" + _vm.data.iconImage }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "demo-upload-list-cover" },
-                      [
-                        _c("Icon", {
-                          attrs: { type: "ios-trash-outline" },
-                          on: { click: _vm.deleteImage }
-                        })
-                      ],
-                      1
-                    )
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
-                _c(
-                  "button",
+                  "Button",
                   {
-                    attrs: { type: "default" },
                     on: {
                       click: function($event) {
-                        _vm.addModal = false
+                        _vm.addModal = true
                       }
                     }
                   },
-                  [_vm._v("Close")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    attrs: {
-                      type: "primary",
-                      disabled: _vm.isAdding,
-                      loading: _vm.isAdding
-                    },
-                    on: { click: _vm.addCategory }
-                  },
-                  [_vm._v(_vm._s(_vm.isAdding ? "Adding.." : "Add Category"))]
-                )
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "Modal",
-            {
-              attrs: {
-                title: "Edit Category",
-                "mask-closable": false,
-                closable: false
-              },
-              model: {
-                value: _vm.editModal,
-                callback: function($$v) {
-                  _vm.editModal = $$v
-                },
-                expression: "editModal"
-              }
-            },
-            [
-              _c("Input", {
-                attrs: { placeholder: "Edit Category Name" },
-                model: {
-                  value: _vm.editData.categoryName,
-                  callback: function($$v) {
-                    _vm.$set(_vm.editData, "categoryName", $$v)
-                  },
-                  expression: "editData.categoryName"
-                }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "space" }),
-              _vm._v(" "),
-              _c(
-                "Upload",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.isIconImageNew,
-                      expression: "isIconImageNew"
-                    }
-                  ],
-                  ref: "editDataUploads",
-                  attrs: {
-                    type: "drag",
-                    headers: {
-                      "x-csrf-token": _vm.token,
-                      "X-Requested-With": "XMLHttpRequest"
-                    },
-                    "on-success": _vm.handleSuccess,
-                    "on-error": _vm.handleError,
-                    format: ["jpg", "jpeg", "png", "bmp"],
-                    "max-size": 2048,
-                    "on-format-error": _vm.handleFormatError,
-                    "on-exceeded-size": _vm.handleMaxSize,
-                    action: "/app/upload"
-                  }
-                },
-                [
-                  _c(
-                    "div",
-                    { staticStyle: { padding: "20px 0" } },
-                    [
-                      _c("Icon", {
-                        staticStyle: { color: "#3399ff" },
-                        attrs: { type: "ios-cloud-upload", size: "52" }
-                      }),
-                      _vm._v(" "),
-                      _c("p", [_vm._v("Click or drag files here to upload")])
-                    ],
-                    1
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _vm.editData.iconImage
-                ? _c("div", { staticClass: "demo-upload-list" }, [
-                    _c("img", { attrs: { src: "" + _vm.editData.iconImage } }),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "demo-upload-list-cover" },
-                      [
-                        _c("Icon", {
-                          attrs: { type: "ios-trash-outline" },
-                          on: {
-                            click: function($event) {
-                              return _vm.deleteImage(false)
-                            }
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
-                _c(
-                  "button",
-                  {
-                    attrs: { type: "default" },
-                    on: { click: _vm.closeEditModal }
-                  },
-                  [_vm._v("Close")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    attrs: {
-                      type: "primary",
-                      disabled: _vm.isEditing,
-                      loading: _vm.isEditing
-                    },
-                    on: { click: _vm.editCategory }
-                  },
                   [
-                    _vm._v(
-                      _vm._s(_vm.isEditing ? "Editing.." : "Edit Category")
-                    )
-                  ]
+                    _c("Icon", { attrs: { type: "md-add" } }),
+                    _vm._v("Add Category")
+                  ],
+                  1
                 )
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "Modal",
-            {
-              attrs: { width: "360" },
-              model: {
-                value: _vm.showDeleteModal,
-                callback: function($$v) {
-                  _vm.showDeleteModal = $$v
-                },
-                expression: "showDeleteModal"
-              }
-            },
-            [
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "_overflow _table_div" }, [
               _c(
-                "p",
-                {
-                  staticStyle: { color: "#f60", "text-align": "center" },
-                  attrs: { slot: "header" },
-                  slot: "header"
-                },
+                "table",
+                { staticClass: "_table" },
                 [
-                  _c("Icon", { attrs: { type: "ios-information-circle" } }),
+                  _vm._m(0),
                   _vm._v(" "),
-                  _c("span", [_vm._v("Delete confirmation")])
+                  _vm._l(_vm.categoryLists, function(category, i) {
+                    return _c("tr", { key: i }, [
+                      _c("td", [_vm._v(_vm._s(category.id))]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "table_pro_img" }, [
+                        _c("img", { attrs: { src: category.iconImage } })
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "_table_name" }, [
+                        _vm._v(_vm._s(category.categoryName))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(category.created_at))]),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        [
+                          _c(
+                            "Button",
+                            {
+                              attrs: { type: "info", size: "small" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.showEditModal(category, i)
+                                }
+                              }
+                            },
+                            [_vm._v("Edit")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "Button",
+                            {
+                              attrs: {
+                                type: "error",
+                                size: "small",
+                                loading: category.isDeleting
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.showDeletingModal(category, i)
+                                }
+                              }
+                            },
+                            [_vm._v("Delete")]
+                          )
+                        ],
+                        1
+                      )
+                    ])
+                  })
                 ],
-                1
-              ),
-              _vm._v(" "),
-              _c("div", { staticStyle: { "text-align": "center" } }, [
-                _c("p", [
-                  _vm._v("Are you sure you want to delete this category?")
-                ])
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { attrs: { slot: "footer" }, slot: "footer" },
-                [
-                  _c(
-                    "Button",
-                    {
-                      attrs: {
-                        type: "error",
-                        size: "large",
-                        long: "",
-                        loading: _vm.isDeleting,
-                        disabled: _vm.isDeleting
-                      },
-                      on: { click: _vm.deleteCategory }
-                    },
-                    [_vm._v("Delete")]
-                  )
-                ],
-                1
+                2
               )
-            ]
-          )
-        ],
-        1
-      )
+            ])
+          ]
+        )
+      ])
     ])
   ])
 }
@@ -68353,147 +67944,21 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("div", [
-        _c("div", { staticClass: "_1side_menu" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c("div", { staticClass: "_1side_menu_content" }, [
-            _vm._m(1),
-            _vm._v(" "),
-            _c("div", { staticClass: "_1side_menu_list" }, [
-              _c("ul", { staticClass: "_1side_menu_list_ul" }, [
-                _c(
-                  "li",
-                  [
-                    _c(
-                      "router-link",
-                      { attrs: { to: "tags" } },
-                      [
-                        _c("Icon", { attrs: { type: "ios-speedometer" } }),
-                        _vm._v(" Tags")
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  [
-                    _c(
-                      "router-link",
-                      { attrs: { to: "category" } },
-                      [
-                        _c("Icon", { attrs: { type: "ios-speedometer" } }),
-                        _vm._v(" Category")
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  [
-                    _c(
-                      "router-link",
-                      { attrs: { to: "adminusers" } },
-                      [
-                        _c("Icon", { attrs: { type: "ios-speedometer" } }),
-                        _vm._v(" Admin users")
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  [
-                    _c(
-                      "router-link",
-                      { attrs: { to: "role" } },
-                      [
-                        _c("Icon", { attrs: { type: "ios-speedometer" } }),
-                        _vm._v(" Role Management")
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  [
-                    _c(
-                      "router-link",
-                      { attrs: { to: "assignRole" } },
-                      [
-                        _c("Icon", { attrs: { type: "ios-speedometer" } }),
-                        _vm._v(" Assign role")
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("li", [
-                  _c(
-                    "a",
-                    { attrs: { href: "/logout" } },
-                    [
-                      _c("Icon", { attrs: { type: "ios-speedometer" } }),
-                      _vm._v(" Logout")
-                    ],
-                    1
-                  )
-                ])
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "header" }, [
-          _c("div", { staticClass: "_2menu _box_shadow" }, [
-            _c("div", { staticClass: "_2menu_logo" }, [
-              _c("ul", { staticClass: "open_button" }, [
-                _c("li", [_c("Icon", { attrs: { type: "ios-list" } })], 1)
-              ])
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("router-view")
-    ],
-    1
-  )
+  return _vm._m(0)
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "_1side_menu_logo" }, [
-      _c("h3", { staticStyle: { "text-align": "center" } }, [
-        _vm._v("Logo Image")
+    return _c("div", [
+      _c("div", { staticClass: "_1side_menu" }, [
+        _c("div", { staticClass: "_1side_menu_logo" }, [
+          _c("h3", { staticStyle: { "text-align": "center" } }, [
+            _vm._v("MyBlog")
+          ])
+        ])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "_1side_menu_img_name" }, [
-      _c("p", { staticClass: "_1side_menu_name" }, [_vm._v("Admin")])
     ])
   }
 ]
@@ -86082,14 +85547,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /*!*********************************************!*\
   !*** ./resources/js/components/mainapp.vue ***!
   \*********************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mainapp_vue_vue_type_template_id_a6706966___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mainapp.vue?vue&type=template&id=a6706966& */ "./resources/js/components/mainapp.vue?vue&type=template&id=a6706966&");
 /* harmony import */ var _mainapp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mainapp.vue?vue&type=script&lang=js& */ "./resources/js/components/mainapp.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _mainapp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _mainapp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -86119,13 +85585,15 @@ component.options.__file = "resources/js/components/mainapp.vue"
 /*!**********************************************************************!*\
   !*** ./resources/js/components/mainapp.vue?vue&type=script&lang=js& ***!
   \**********************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_mainapp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./mainapp.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/mainapp.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_mainapp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_mainapp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_mainapp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_mainapp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_mainapp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_mainapp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 

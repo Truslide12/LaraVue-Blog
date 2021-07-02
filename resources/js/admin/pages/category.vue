@@ -1,7 +1,7 @@
 <template>
     <div>
        <div class="content">
-			<div class="container-fluid">	
+			<div class="container-fluid">
 				<!--~~~~~~~ TABLE ONE ~~~~~~~~~-->
 				<div class="_1adminOverveiw_table_recent _box_shadow _border_radious _mar_b30 _p20">
 					<p class="_title0">Category List <Button @click="addModal=true"><Icon type="md-add" />Add Category</Button></p>
@@ -20,7 +20,7 @@
 
 
 								<!-- ITEMS -->
-							<tr v-for="(category, i) in categoryLists" :key="i" 
+							<tr v-for="(category, i) in categoryLists" :key="i"
                             >
                             <!-- v-if="categorys.length" -->
 								<td>{{category.id}}</td>
@@ -39,106 +39,6 @@
 						</table>
 					</div>
 				</div>
-
-				<!-- Category Add Modal -->
-				<Modal
-					v-model="addModal"
-					title="Add Category"
-					:mask-closable = "false"
-					:closable = "false">
-					<Input v-model="data.categoryName" placeholder="Add Category Name" />
-                    <div class="space"></div>
-
-                    <Upload
-                        ref="uploads"
-                        type="drag"
-                        :headers = "{'x-csrf-token' : token, 'X-Requested-With' : 'XMLHttpRequest'}"
-                        :on-success="handleSuccess"
-                        :on-error="handleError"
-                        :format="['jpg','jpeg','png','bmp',]"
-                        :max-size="2048"
-                        :on-format-error="handleFormatError"
-                        :on-exceeded-size="handleMaxSize"
-                        action="/app/upload">
-                        <div style="padding: 20px 0">
-                            <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
-                            <p>Click or drag files here to upload</p>
-                        </div>
-                    </Upload>	
-
-                    <div class="demo-upload-list" v-if="data.iconImage">
-
-                        <img :src="`/uploads/${data.iconImage}`">
-                        <div class="demo-upload-list-cover">
-                            <Icon type="ios-trash-outline" @click='deleteImage'></Icon>
-                        </div>
-
-                    </div>
-
-                    <div slot="footer">
-						<button type="default" @click="addModal=false">Close</button>
-						<button type="primary" @click="addCategory" :disabled="isAdding" :loading="isAdding">{{isAdding ? 'Adding..' : 'Add Category'}}</button>
-					</div>
-				</Modal>
-				<!-- End Add Modal -->
-
-				<!-- category Edit Modal -->
-				<Modal
-					v-model="editModal"
-					title="Edit Category"
-					:mask-closable = "false"
-					:closable = "false">
-					<Input v-model="editData.categoryName" placeholder="Edit Category Name" />
-                    <div class="space"></div>
-
-                    <Upload v-show="isIconImageNew"
-                        ref="editDataUploads"
-                        type="drag"
-                        :headers = "{'x-csrf-token' : token, 'X-Requested-With' : 'XMLHttpRequest'}"
-                        :on-success="handleSuccess"
-                        :on-error="handleError"
-                        :format="['jpg','jpeg','png','bmp',]"
-                        :max-size="2048"
-                        :on-format-error="handleFormatError"
-                        :on-exceeded-size="handleMaxSize"
-                        action="/app/upload">
-                        <div style="padding: 20px 0">
-                            <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
-                            <p>Click or drag files here to upload</p>
-                        </div>
-                    </Upload>	
-
-                    <div class="demo-upload-list" v-if="editData.iconImage">
-
-                        <img :src="`${editData.iconImage}`">
-                        <div class="demo-upload-list-cover">
-                            <Icon type="ios-trash-outline" @click='deleteImage(false)'></Icon>
-                        </div>
-
-                    </div>
-
-                    <div slot="footer">
-						<button type="default" @click="closeEditModal">Close</button>
-						<button type="primary" @click="editCategory" :disabled="isEditing" :loading="isEditing">{{isEditing ? 'Editing..' : 'Edit Category'}}</button>
-					</div>
-				</Modal>
-				<!-- End Edit Modal -->
-
-				<!-- Delete Modal -->
-				<Modal v-model="showDeleteModal" width="360">
-					<p slot="header" style="color:#f60;text-align:center">
-						<Icon type="ios-information-circle"></Icon>
-						<span>Delete confirmation</span>
-					</p>
-					<div style="text-align:center">
-						<p>Are you sure you want to delete this category?</p>
-					</div>
-					<div slot="footer">
-						<Button type="error" size="large" long :loading="isDeleting" :disabled="isDeleting" 
-						@click="deleteCategory">Delete</Button>
-					</div>
-				</Modal>
-
 			</div>
 		</div>
     </div>
@@ -155,14 +55,14 @@ export default {
 			addModal : false,
 			editModal: false,
             isAdding : false,
-            isEditing: false, 
+            isEditing: false,
 			categoryLists : [],
 			editData : {
                 categoryName: '',
                 iconImage: '',
 			},
 			index : -1,
-			isDeleting : false, 
+			isDeleting : false,
 			showDeleteModal: false,
 			deleteItem: {},
             deletingIndex: -1,
@@ -173,7 +73,7 @@ export default {
 	},
 
 	methods : {
-		async addCategory() {
+		async add() {
             if(this.data.categoryName.trim()=='') return this.e('Category name is required')
             if(this.data.iconImage.trim()=='') return this.e('Icon image is required')
             this.data.iconImage = `/uploads/${this.data.iconImage}`
@@ -197,12 +97,12 @@ export default {
 				}
 			}
 		},
-		async editCategory() {
+		async edit() {
             if(this.editData.categoryName.trim()=='') return this.e('Category name is required')
             if(this.editData.iconImage.trim()=='') return this.e('Icon image is required')
 			const res = await this.callApi(
-				'post', 
-				'app/edit_category', 
+				'post',
+				'app/edit_category',
 				this.editData
 			);
 			if(res.status===200){
@@ -221,7 +121,7 @@ export default {
 				}
 			}
         },
-        
+
 		showEditModal (category, index) {
 			console.log(category)
 			this.editData = category
@@ -230,7 +130,7 @@ export default {
             this.isEditingItem = true
 		},
 
-		async deleteCategory() {
+		async delete() {
 			// How to set a new attribute that was not loaded initially
 			// this.$set(category, 'isDeleting', true)
 			this.isDeleting = true
